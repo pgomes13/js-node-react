@@ -6,6 +6,7 @@
  */
 
 import React from 'react';
+import fetch from 'node-fetch';
 
 class App extends React.Component {
   constructor(props) {
@@ -25,18 +26,32 @@ class App extends React.Component {
     this.getBrandsAndStores();
   }
   changeName(store) { // eslint-disable-line
-    const BASE_URL = '/api/stores';
+    // 'node-fetch' does not accept relative paths
+    const BASE_URL = 'http://localhost:3000/api/stores';
     const END_URL = BASE_URL + '/' + store.store_id; // eslint-disable-line
-    window.fetch(END_URL, {
+
+    // Tried using window.fetch. It has some issue with the POST/PUT request payloads.
+    // Issue - https://github.com/github/fetch/issues/323
+    // window.fetch(END_URL, {
+    //   method: 'PUT',
+    //   body: JSON.stringify({
+    //     name: this.state.inputValue // eslint-disable-line
+    //   }),
+    //   header: { 'Content-Type': 'application/json' },
+    // }).then((response) => {
+    //   if (response.status === 201) {
+    //     this.getBrandsAndStores();
+    //   }
+    // });
+
+    fetch(END_URL, {
       method: 'PUT',
-      header: {
-        'Content-Type': 'application/json',
-      },
       body: JSON.stringify({
         name: this.state.inputValue // eslint-disable-line
       }),
-    }).then((response) => {
-      if (response.status === 201) {
+      headers: { 'Content-Type': 'application/json' },
+    }).then((res) => {
+      if (res.status === 201) {
         this.getBrandsAndStores();
       }
     });
