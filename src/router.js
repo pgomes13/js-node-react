@@ -16,7 +16,23 @@
  *
  *  Satisfy the following API endpoints:
  */
-const brands = [{ id: 1, name: 'Donut King' }];
+const color = require('chalk');
+const Promise = require('bluebird');
+const mongoose = require('mongoose');
+const bodyParser = require('body-parser');
+
+// connect to the mongodb server
+async function run() {
+  try {
+    await mongoose.connect('mongodb://localhost/rfg');
+    console.log(color.blue('mongodb connected!'));
+  } catch (err) {
+    console.log(color.red('ERROR - ' + err));
+  }
+};
+
+// run the connections
+run();
 
 module.exports = (app) => {
   
