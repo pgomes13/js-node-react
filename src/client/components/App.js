@@ -14,11 +14,37 @@ class App extends React.Component {
       brands: [],
       stores: [],
       inputValue: '',
+      showInput: false,
     };
 
+    this.getBrandsAndStores = this.getBrandsAndStores.bind(this);
     this.changeName = this.changeName.bind(this);
+    this.handleChange = this.handleChange.bind(this);
   }
   componentDidMount() {
+    this.getBrandsAndStores();
+  }
+  changeName(store) { // eslint-disable-line
+    const BASE_URL = '/api/stores';
+    const END_URL = BASE_URL + '/' + store.store_id; // eslint-disable-line
+    window.fetch(END_URL, {
+      method: 'PUT',
+      header: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        name: this.state.inputValue // eslint-disable-line
+      }),
+    }).then((response) => {
+      if (response.status === 201) {
+        this.getBrandsAndStores();
+      }
+    });
+  }
+  handleChange(newValue) { // eslint-disable-line
+    this.setState({ inputValue: newValue });
+  }
+  getBrandsAndStores() {
     const brandsPromise = new Promise((resolve, reject) => {
       window.fetch('/api/brands')
       .then((res) => {
@@ -46,10 +72,11 @@ class App extends React.Component {
       });
     });
   }
-  changeName(store) { // eslint-disable-line
-    console.log(store);
-  }
   render() {
+    const valueLink = {
+      value: this.state.inputValue,
+      requestChange: this.handleChange,
+    };
     return (
       <div>
         <h2>Brands</h2>
@@ -59,15 +86,19 @@ class App extends React.Component {
           ))}
         </ul>
         <h2>Stores</h2>
-        <ul>
+        <input type="text" placeholder="New store name" valueLink={valueLink} />
+        <table>
+          <tr>
+            <th>Store</th>
+            <th>&nbsp;</th>
+          </tr>
           {this.state.stores.map(store => (
-            <li key={store.store_id}>
-              {store.name}&nbsp;&nbsp;&nbsp;&nbsp;
-              <input value={this.state.inputValue} />&nbsp;&nbsp;&nbsp;&nbsp;
-              <button onClick={this.changeName({ store })} />
-            </li>
+            <tr key={store.store_id}>
+              <td>{store.name}</td>
+              <td><button type="button" onClick={() => this.changeName(store)}>Edit</button></td>
+            </tr>
           ))}
-        </ul>
+        </table>
       </div>
     );
   }

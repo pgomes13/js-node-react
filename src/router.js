@@ -39,7 +39,7 @@ async function run() {
 run();
 
 module.exports = (app) => {
-
+  
   app.use(bodyParser.json());
   
   // Returns all brands:
@@ -76,11 +76,9 @@ module.exports = (app) => {
   app.put('/api/stores/:storeId', async (req, res, next) => {
     try {
       const update = {
-        name: req.body.name,
-        brand_id: req.body.brand_id
+        name: req.body.name
       };
       const store = await Store.findOneAndUpdate({'store_id': parseInt(req.params.storeId)}, update, { upsert: true, new: true });
-    
       res.status(201).json(store);
     } catch (err) {
       return next(err);

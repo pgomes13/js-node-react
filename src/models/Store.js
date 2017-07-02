@@ -6,7 +6,7 @@ const mongoose = require('mongoose');
 const StoreSchema = new mongoose.Schema({
 	store_id: { type: Number },
 	name: { type: String, required: true },
-	brand: { type: mongoose.Schema.Types.ObjectId, ref: 'Brand' }
+	brand_id: { type: Number }
 });
 
 mongoose.model('Store', StoreSchema);
