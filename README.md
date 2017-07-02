@@ -25,7 +25,9 @@ Follow the directions here: `./src/router.js`
 
 
 - From the root directory run the following commands in separate terminal to populate mock mongodb collections - 
+
 	'mongoimport --db rfg --collection brands --drop --file ./data/brands.json --jsonArray'
+	
 	'mongoimport --db rfg --collection stores --drop --file ./data/stores.json --jsonArray'
 
 
@@ -33,9 +35,13 @@ Follow the directions here: `./src/router.js`
 
 
 - http://localhost:3000/api/brands (Returns all brands)
+
 - http://localhost:3000/api/stores (Returns all stores)
+
 - http://localhost:3000/api/brands/1/stores (Returns all stores for a particular brand ID)
+
 - Using Postman PUT http://localhost:3000/api/stores/4 
+
 	payload - { "name": "Donut King Upper Coomera" } 
 	
 
