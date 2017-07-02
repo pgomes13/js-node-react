@@ -1,0 +1,57 @@
+[
+   {
+      "brand_id": 1,
+      "name": "Donut King",
+      "stores": [ObjectId("5957bf3266b558724ffcf7cf"), ObjectId("5957bf3266b558724ffcf7d0"), ObjectId("5957bf3266b558724ffcf7d1"), ObjectId("5957bf3266b558724ffcf7d2"), ObjectId("5957bf3266b558724ffcf7d4"), ObjectId("5957bf3266b558724ffcf7d7")]
+   },
+   {
+      "brand_id": 2,
+      "name": "Brumby's",
+      "stores": [ObjectId("5957bf3266b558724ffcf7d3"), ObjectId("5957bf3266b558724ffcf7d6"), ObjectId("5957bf3266b558724ffcf7da"), ObjectId("5957bf3266b558724ffcf7d5")]
+   },
+   {
+      "brand_id": 3,
+      "name": "Michel's",
+      "stores": [ObjectId("5957bf3266b558724ffcf7d8"), ObjectId("5957bf3266b558724ffcf7d9"), ObjectId("5957bf3266b558724ffcf7db"), ObjectId("5957bf3266b558724ffcf7dc")]
+   },
+   {
+      "brand_id": 4,
+      "name": "Pizza Capers",
+      "stores": []
+   },
+   {
+      "brand_id": 5,
+      "name": "Crust Gourmet Pizza Bar",
+      "stores": []
+   },
+   {
+      "brand_id": 6,
+      "name": "Esquires Coffee",
+      "stores": []
+   },
+   {
+      "brand_id": 7,
+      "name": "The Coffee guy",
+      "stores": []
+   },
+   {
+      "brand_id": 8,
+      "name": "bb's",
+      "stores": []
+   },
+   {
+      "brand_id": 9,
+      "name": "Caffe Coffee",
+      "stores": []
+   },
+   {
+      "brand_id": 10,
+      "name": "cafe2u",
+      "stores": []
+   },
+   {
+      "brand_id": 11,
+      "name": "Gloria Jean's",
+      "stores": []
+   }
+]

@@ -1,0 +1,72 @@
+[
+   {
+      "store_id": 1,
+      "name": "Donut King Southport",
+      "brand_id": 1 
+   },
+   {
+      "store_id": 2,
+      "name": "Donut King Brisbane CBD",
+      "brand_id": 1 
+   },
+   {
+      "store_id": 3,
+      "name": "Donut King Harbour Town",
+      "brand_id": 1
+   },
+   {
+      "store_id": 4,
+      "name": "Donut King Westfield Helensvale",
+      "brand_id": 1
+   },
+   {
+      "store_id": 5,
+      "name": "Donut King Southbank",
+      "brand_id": 1
+   },
+   {
+      "store_id": 6,
+      "name": "Donut King Brisbane Airport",
+      "brand_id": 1
+   },
+   {
+      "store_id": 7,
+      "name": "Brumby's Brisbane Airport",
+      "brand_id": 2
+   },
+   {
+      "store_id": 8,
+      "name": "Brumby's Southbank",
+      "brand_id": 2
+   },
+   {
+      "store_id": 9,
+      "name": "Brumby's Westfield Helensvale",
+      "brand_id": 2
+   },
+   {
+      "store_id": 10,
+      "name": "Brumby's Harbour Town",
+      "brand_id": 2
+   },
+   {
+      "store_id": 11,
+      "name": "Michel's Brisbane CBD",
+      "brand_id": 3
+   },
+   {
+      "store_id": 12,
+      "name": "Michel's Westfield Helensvale",
+      "brand_id": 3
+   },
+   {
+      "store_id": 13,
+      "name": "Michel's Brisbane Airport",
+      "brand_id": 3
+   },
+   {
+      "store_id": 14,
+      "name": "Michel's Southbank",
+      "brand_id": 3
+   }
+]
