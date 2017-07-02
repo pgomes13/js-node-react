@@ -45,14 +45,14 @@ module.exports = (app) => {
   // Returns all brands:
    app.get('/api/brands', async (req, res, next) => {
     try {
-      const brands = await Brand.find({}).populate('stores').exec();
+      const brands = await Brand.find().populate('stores').exec();
       res.status(200).json(brands);
     } catch (err) {
       return next(err);
     }
   });
   
-  Returns all stores:
+  // Returns all stores:
    app.get('/api/stores', async (req, res, next) => {
     try {
       const stores = await Store.find({});
@@ -63,8 +63,13 @@ module.exports = (app) => {
   });
   
   // Returns all stores for a particular brand ID:
-  app.get('/api/brands/:brandId/stores', (req, res) => {
-    res.send(`List all stores for brand ID ${req.params.brandId} here.`);
+  app.get('/api/brands/:brandId/stores', async (req, res, next) => {
+    try {
+      const stores = await Store.find({'brand_id': parseInt(req.params.brandId)});
+      res.status(200).json(stores);
+    } catch (err) {
+      return next(err);
+    }
   });
   
   // Updates a store:
