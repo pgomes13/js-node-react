@@ -15,29 +15,47 @@
  *  - Have no lint errors
  */
 
-// import Promise from 'bluebird';
+const Promise = require('bluebird');
 
 // This function merely waits 250ms and completes with: [ payload1, payload2 ]
-module.exports = function (getPromisedPayload, nodeStyleCallback, done) {
-  const results = [];
+module.exports = function (getPromisedPayload, nodeStyleCallback) {
+  // return promise response 
+  return new Promise((resolve, reject) => {
+    const results = [];
 
-  setTimeout(function () {
-    getPromisedPayload().then(function (payload) {
-      results.push(payload);
+    // wrap setTimeout of 250 ms on the async function 
+    setTimeout(async () => {
 
-      nodeStyleCallback(function (err, unresolvedPromisePayload) {
-        if (err) return done(err);
+      // wrap awaited promises in try & errors in catch
+      try {
+        // get response after promise resolves
+        const payload = await getPromisedPayload();
 
-        unresolvedPromisePayload.then(function (payload2) {
-          results.push(payload2);
+        // push response into results
+        results.push(payload);
 
-          done(null, results);
-        }).catch(function (_err) {
-          done(_err);
+        nodeStyleCallback(async (err, unresolvedPromisePayload) => {
+          // catch callback error early
+          if (err) {
+            return reject(err); // return thr rejected promise
+          }
+
+          try {
+            const payload2 = await unresolvedPromisePayload;
+
+            // push the response into results
+            results.push(payload2);
+
+            // resolve the callback promise
+            resolve(results);
+          } catch (_err) {
+            // reject the promise
+            reject(_err);
+          }
         });
-      });
-    }).catch(function (err) {
-      done(err);
-    });
-  }, 250);
+      } catch (err) {
+        reject(err)
+      } 
+    }, 250);
+  });
 };
