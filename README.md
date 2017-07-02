@@ -4,12 +4,12 @@ Tests for Node.js API, React and Javascript control flow.
 
 ### USAGE
 
-- Use `>= node@7.x.x`
+- Using node@8.1.3 & npm@5.0.4
 - `npm install`
 
 #### 1) CONTROL FLOW
 
-Ensure all tests pass and meet the criteria here: `./src/controlFlow.js`
+All tests are passing and meet the criteria here: `./src/controlFlow.js`
 
 - `npm test`
 

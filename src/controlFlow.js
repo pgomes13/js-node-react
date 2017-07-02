@@ -18,9 +18,9 @@
 const Promise = require('bluebird');
 
 // This function merely waits 250ms and completes with: [ payload1, payload2 ]
-module.exports = function (getPromisedPayload, nodeStyleCallback) {
+module.exports = async (getPromisedPayload, nodeStyleCallback) => {
   // return promise response 
-  return new Promise((resolve, reject) => {
+  return await new Promise((resolve, reject) => {
     const results = [];
 
     // wrap setTimeout of 250 ms on the async function 
@@ -37,7 +37,7 @@ module.exports = function (getPromisedPayload, nodeStyleCallback) {
         nodeStyleCallback(async (err, unresolvedPromisePayload) => {
           // catch callback error early
           if (err) {
-            return reject(err); // return thr rejected promise
+            return reject(err); // return the rejected promise
           }
 
           try {
