@@ -73,7 +73,17 @@ module.exports = (app) => {
   });
   
   // Updates a store:
-  app.put('/api/stores/:storeId', (req, res) => {
-    res.send('Update a store here.');
+  app.put('/api/stores/:storeId', async (req, res, next) => {
+    try {
+      const update = {
+        name: req.body.name,
+        brand_id: req.body.brand_id
+      };
+      const store = await Store.findOneAndUpdate({'store_id': parseInt(req.params.storeId)}, update, { upsert: true, new: true });
+    
+      res.status(201).json(store);
+    } catch (err) {
+      return next(err);
+    };
   });
 };
