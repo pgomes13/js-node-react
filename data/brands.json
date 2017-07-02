@@ -2,17 +2,17 @@
    {
       "brand_id": 1,
       "name": "Donut King",
-      "stores": [ObjectId("5957bf3266b558724ffcf7cf"), ObjectId("5957bf3266b558724ffcf7d0"), ObjectId("5957bf3266b558724ffcf7d1"), ObjectId("5957bf3266b558724ffcf7d2"), ObjectId("5957bf3266b558724ffcf7d4"), ObjectId("5957bf3266b558724ffcf7d7")]
+      "stores": []
    },
    {
       "brand_id": 2,
       "name": "Brumby's",
-      "stores": [ObjectId("5957bf3266b558724ffcf7d3"), ObjectId("5957bf3266b558724ffcf7d6"), ObjectId("5957bf3266b558724ffcf7da"), ObjectId("5957bf3266b558724ffcf7d5")]
+      "stores": []
    },
    {
       "brand_id": 3,
       "name": "Michel's",
-      "stores": [ObjectId("5957bf3266b558724ffcf7d8"), ObjectId("5957bf3266b558724ffcf7d9"), ObjectId("5957bf3266b558724ffcf7db"), ObjectId("5957bf3266b558724ffcf7dc")]
+      "stores": []
    },
    {
       "brand_id": 4,
