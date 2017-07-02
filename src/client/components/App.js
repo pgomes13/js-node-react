@@ -12,12 +12,42 @@ class App extends React.Component {
     super(props);
     this.state = {
       brands: [],
+      stores: [],
+      inputValue: '',
     };
+
+    this.changeName = this.changeName.bind(this);
   }
   componentDidMount() {
-    window.fetch('/api/brands')
-      .then(res => res.json())
-      .then(brands => this.setState({ brands }));
+    const brandsPromise = new Promise((resolve, reject) => {
+      window.fetch('/api/brands')
+      .then((res) => {
+        resolve(res.json());
+      })
+      .catch((err) => {
+        reject(err);
+      });
+    });
+
+    const storesPromise = new Promise((resolve, reject) => {
+      window.fetch('/api/stores')
+      .then((res) => {
+        resolve(res.json());
+      })
+      .catch((err) => {
+        reject(err);
+      });
+    });
+
+    Promise.all([brandsPromise, storesPromise]).then((res) => {
+      this.setState({
+        brands: res[0],
+        stores: res[1],
+      });
+    });
+  }
+  changeName(store) { // eslint-disable-line
+    console.log(store);
   }
   render() {
     return (
@@ -25,11 +55,19 @@ class App extends React.Component {
         <h2>Brands</h2>
         <ul>
           {this.state.brands.map(brand => (
-            <li key={brand.id}>{brand.name}</li>
+            <li key={brand.brand_id}>{brand.name}</li>
           ))}
         </ul>
         <h2>Stores</h2>
-        {/* List the stores here. */}
+        <ul>
+          {this.state.stores.map(store => (
+            <li key={store.store_id}>
+              {store.name}&nbsp;&nbsp;&nbsp;&nbsp;
+              <input value={this.state.inputValue} />&nbsp;&nbsp;&nbsp;&nbsp;
+              <button onClick={this.changeName({ store })} />
+            </li>
+          ))}
+        </ul>
       </div>
     );
   }
