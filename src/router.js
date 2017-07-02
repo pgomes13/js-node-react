@@ -20,6 +20,10 @@ const color = require('chalk');
 const Promise = require('bluebird');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
+require('./models/Brand');
+require('./models/Store');
+const Brand = mongoose.model('Brand');
+const Store = mongoose.model('Store');
 
 // connect to the mongodb server
 async function run() {
@@ -35,15 +39,27 @@ async function run() {
 run();
 
 module.exports = (app) => {
+
+  app.use(bodyParser.json());
   
   // Returns all brands:
-  app.get('/api/brands', (req, res) => {
-    res.json(brands);
+   app.get('/api/brands', async (req, res, next) => {
+    try {
+      const brands = await Brand.find({}).populate('stores').exec();
+      res.status(200).json(brands);
+    } catch (err) {
+      return next(err);
+    }
   });
   
-  // Returns all stores:
-  app.get('/api/stores', (req, res) => {
-    res.send('List all stores here.');
+  Returns all stores:
+   app.get('/api/stores', async (req, res, next) => {
+    try {
+      const stores = await Store.find({});
+      res.status(200).json(stores);
+    } catch (err) {
+      return next(err);
+    }
   });
   
   // Returns all stores for a particular brand ID:
